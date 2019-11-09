@@ -17,7 +17,8 @@ const BookCard = (props) => {
                 <CardImg src={props.image} className="float-left mr-3 book-img" alt="Book Image" />  
                 {props.description}
                 </CardText>
-            <Button className="float-right">{props.label}</Button>
+            <Button className="float-right" onClick={props.onClick}>{props.label}</Button>
+            {/* eslint-disable-next-line */}
             <a href={props.link} target="_blank" className="mr-1 float-right">
                 <Button>View</Button> 
             </a>

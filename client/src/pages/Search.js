@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Card, CardHeader, CardBody, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import API from "./../utils/API"
 import AppJumbotron from "./../components/Jumbotron";
 import BookCard from "./../components/BookCard";
 
@@ -25,10 +26,20 @@ class Search extends Component {
                 this.setState({
                     results: result.items
                 })
-                console.log("result", this.state.results);
             }
         );
     };
+
+    saveBook = book => {
+        API.saveBook({
+                image: book.volumeInfo.imageLinks.thumbnail,
+                title: book.volumeInfo.title,
+                authors: book.volumeInfo.authors,
+                description: book.volumeInfo.description,
+                link: book.volumeInfo.infoLink
+            }).then(res => {console.log("Saved to database!")})
+            .catch(err => console.log(err));
+    }
 
     render() {
         return (
@@ -64,12 +75,14 @@ class Search extends Component {
                 <div>
                     {this.state.results.map(book => (
                         <BookCard
+                            key={book.id}
                             image={book.volumeInfo.imageLinks.thumbnail} 
                             title={book.volumeInfo.title}
                             authors={book.volumeInfo.authors}
                             description={book.volumeInfo.description}
                             link={book.volumeInfo.infoLink}
                             label="Save"
+                            onClick={() => this.saveBook(book)}
                         />
                     ))}
                 </div>
