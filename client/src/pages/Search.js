@@ -87,7 +87,7 @@ class Search extends Component {
                     ))}
                 </div>
             ) : (
-              <h3>No Results to Display</h3>
+              <h3>No results to display</h3>
             )}
 
             </CardBody>
