@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import Jumbotron from "./../components/Jumbotron";
+import { Container } from 'reactstrap';
+import AppJumbotron from "./../components/Jumbotron";
 
 class Search extends Component {
     state = {
-
+        searchbar: "",
     };
 
     render() {
         return (
         <div>
-            <Jumbotron />
+            <AppJumbotron />
         </div>
         )
     }

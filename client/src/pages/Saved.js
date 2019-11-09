@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Jumbotron from "./../components/Jumbotron";
+import AppJumbotron from "./../components/Jumbotron";
 
 class Saved extends Component {
     state = {
@@ -9,7 +9,7 @@ class Saved extends Component {
     render() {
         return (
         <div>
-            <Jumbotron />
+            <AppJumbotron />
         </div>
         )
     }
