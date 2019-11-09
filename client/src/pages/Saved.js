@@ -24,6 +24,9 @@ class Saved extends Component {
     deleteBook = id => {
         API.deleteBook(id)
           .then(res => this.loadBooks())
+          .then(() => {
+            alert("Book Deleted");
+          })
           .catch(err => console.log(err));
       };
 

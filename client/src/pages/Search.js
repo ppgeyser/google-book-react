@@ -37,7 +37,9 @@ class Search extends Component {
                 authors: book.volumeInfo.authors,
                 description: book.volumeInfo.description,
                 link: book.volumeInfo.infoLink
-            }).then(res => {console.log("Saved to database!")})
+            }).then(res => {
+                alert("Book saved!");
+            })
             .catch(err => console.log(err));
     }
 
