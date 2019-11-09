@@ -17,7 +17,7 @@ const AppNavbar = (props) => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/"><img src="/googlebooks.png" /> React Search</NavbarBrand>
+        <NavbarBrand href="/"><img src="/googlebooks.png" alt="Google Books logo"/> React Search</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
