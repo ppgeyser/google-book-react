@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { Card, CardHeader, CardBody, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import AppJumbotron from "./../components/Jumbotron";
+import BookCard from "./../components/BookCard";
 
 class Search extends Component {
     state = {
         searchbar: "",
+        results: []
     };
 
     handleInputChange = event => {
@@ -20,9 +22,12 @@ class Search extends Component {
         .then(res => res.json())
         .then(
             (result) => {
-                console.log(result);
+                this.setState({
+                    results: result.items
+                })
+                console.log("result", this.state.results);
             }
-        )
+        );
     };
 
     render() {
@@ -33,7 +38,6 @@ class Search extends Component {
             <Card>
                 <CardHeader>Book Search</CardHeader>
                 <CardBody>
-
                     <Form>
                         <FormGroup>
                             <Label>Book</Label>
@@ -49,8 +53,31 @@ class Search extends Component {
                             Search
                         </Button>
                     </Form>
-
                 </CardBody>
+        </Card>
+        <br/>
+        <Card>
+            <CardHeader>Results</CardHeader>
+            <CardBody>
+
+            {this.state.results.length ? (
+                <div>
+                    {this.state.results.map(book => (
+                        <BookCard
+                            image={book.volumeInfo.imageLinks.thumbnail} 
+                            title={book.volumeInfo.title}
+                            authors={book.volumeInfo.authors}
+                            description={book.volumeInfo.description}
+                            link={book.volumeInfo.infoLink}
+                            label="Save"
+                        />
+                    ))}
+                </div>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+
+            </CardBody>
         </Card>
 
         </div>
