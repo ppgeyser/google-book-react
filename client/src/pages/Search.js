@@ -14,6 +14,17 @@ class Search extends Component {
         });
       };
 
+    handleFormSubmit = event => {
+    event.preventDefault();
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchbar}`)
+        .then(res => res.json())
+        .then(
+            (result) => {
+                console.log(result);
+            }
+        )
+    };
+
     render() {
         return (
         <div>
@@ -32,7 +43,11 @@ class Search extends Component {
                             name="searchbar"
                             placeholder="Enter book title here" />
                         </FormGroup>
-                        <Button>Search</Button>
+                        <Button
+                            onClick={this.handleFormSubmit}
+                        >
+                            Search
+                        </Button>
                     </Form>
 
                 </CardBody>
