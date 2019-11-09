@@ -9,6 +9,18 @@ class Saved extends Component {
         books: []
     };
 
+    componentDidMount() {
+        this.loadBooks();
+    };
+
+    loadBooks() {
+        API.getBooks()
+            .then(res => {
+                this.setState({books: res.data});
+                console.log("books", this.state.books);
+            });
+    }
+
     render() {
         return (
         <div>
@@ -22,14 +34,14 @@ class Saved extends Component {
                     <div>
                         {this.state.books.map(book => (
                             <BookCard
-                                key={book.id}
-                                image={book.volumeInfo.imageLinks.thumbnail} 
-                                title={book.volumeInfo.title}
-                                authors={book.volumeInfo.authors}
-                                description={book.volumeInfo.description}
-                                link={book.volumeInfo.infoLink}
-                                label="Save"
-                                onClick={() => this.saveBook(book)}
+                                key={book._id}
+                                image={book.image} 
+                                title={book.title}
+                                authors={book.authors}
+                                description={book.description}
+                                link={book.link}
+                                label="Delete"
+                                onClick={() => this.deleteBook(book._id)}
                             />
                         ))}
                     </div>
