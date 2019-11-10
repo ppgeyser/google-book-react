@@ -15,8 +15,7 @@ const AppNavbar = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
-      <Navbar color="light" light expand="md">
+      <Navbar color="light" light expand="md" sticky={"top"}>
         <NavbarBrand href="/"><img src="/googlebooks.png" alt="Google Books logo"/> React Search</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
@@ -29,8 +28,9 @@ const AppNavbar = (props) => {
             </NavItem>
           </Nav>
         </Collapse>
+        <br />
+        {props.children}
       </Navbar>
-    </div>
   );
 }
 
