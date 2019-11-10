@@ -51,7 +51,10 @@ class Saved extends Component {
                 Book deleted!
             </Alert>
 
-            <AppJumbotron />
+            <AppJumbotron 
+            title="Saved Books"
+            subtitle="View and remove books of interest"
+            />
 
             <Card>
                 <CardHeader>Saved Books</CardHeader>

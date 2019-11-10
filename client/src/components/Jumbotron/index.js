@@ -6,8 +6,8 @@ const AppJumbotron = (props) => {
     <div>
       <Jumbotron fluid>
         <Container>
-          <h1 className="display-3 text-center">Google Books (React) Search</h1>
-          <p className="lead text-center">Search for and save books of interest</p>
+          <h1 className="display-3 text-center">{props.title}</h1>
+          <p className="lead text-center">{props.subtitle}</p>
         </Container>
       </Jumbotron>
     </div>

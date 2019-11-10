@@ -65,7 +65,10 @@ class Search extends Component {
                 Book saved!
             </Alert>
 
-            <AppJumbotron />
+            <AppJumbotron 
+            title="Search Books"
+            subtitle="Search for and save books of interest"
+            />
 
             <Card>
                 <CardHeader>Book Search</CardHeader>
