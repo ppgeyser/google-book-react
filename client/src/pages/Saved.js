@@ -1,13 +1,25 @@
 import React, { Component } from "react";
-import { Card, CardHeader, CardBody, } from 'reactstrap';
-import API from "./../utils/API"
+import { Card, CardHeader, CardBody, Alert } from 'reactstrap';
+import API from "./../utils/API";
+import Nav from "./../components/Nav";
 import AppJumbotron from "./../components/Jumbotron";
 import BookCard from "./../components/BookCard";
 
 class Saved extends Component {
     state = {
-        books: []
+        books: [],
+        isVisible: false
     };
+
+    setVisible = (boolean) => {
+        this.setState({
+            isVisible: boolean
+        });
+    };
+
+    onDismiss = () => {
+        this.setVisible(false);
+    }
 
     componentDidMount() {
         this.loadBooks();
@@ -25,7 +37,7 @@ class Saved extends Component {
         API.deleteBook(id)
           .then(res => this.loadBooks())
           .then(() => {
-            alert("Book Deleted");
+            this.setVisible(true);
           })
           .catch(err => console.log(err));
       };
@@ -33,6 +45,12 @@ class Saved extends Component {
     render() {
         return (
         <div>
+            <Nav />
+
+            <Alert color="danger" isOpen={this.state.isVisible} toggle={this.onDismiss} style={{ position: 'fixed', zIndex: 1000, width: '100%' }}>
+                Book deleted!
+            </Alert>
+
             <AppJumbotron />
 
             <Card>

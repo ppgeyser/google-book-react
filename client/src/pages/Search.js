@@ -1,14 +1,26 @@
 import React, { Component } from "react";
-import { Card, CardHeader, CardBody, Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import API from "./../utils/API"
+import { Card, CardHeader, CardBody, Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
+import API from "./../utils/API";
+import Nav from "./../components/Nav";
 import AppJumbotron from "./../components/Jumbotron";
 import BookCard from "./../components/BookCard";
 
 class Search extends Component {
     state = {
         searchbar: "",
-        results: []
+        results: [],
+        isVisible: false
     };
+
+    setVisible = (boolean) => {
+        this.setState({
+            isVisible: boolean
+        });
+    };
+
+    onDismiss = () => {
+        this.setVisible(false);
+    }
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -38,7 +50,7 @@ class Search extends Component {
                 description: book.volumeInfo.description,
                 link: book.volumeInfo.infoLink
             }).then(res => {
-                alert("Book saved!");
+                this.setVisible(true);
             })
             .catch(err => console.log(err));
     }
@@ -46,6 +58,13 @@ class Search extends Component {
     render() {
         return (
         <div>
+
+            <Nav />
+
+            <Alert color="success" isOpen={this.state.isVisible} toggle={this.onDismiss} style={{ position: 'fixed', zIndex: 1000, width: '100%' }}>
+                Book saved!
+            </Alert>
+
             <AppJumbotron />
 
             <Card>
